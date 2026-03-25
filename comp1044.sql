@@ -32,7 +32,7 @@ CREATE TABLE `admins` (
   `username` varchar(50) NOT NULL,
   `password_hash` varchar(255) NOT NULL,
   `full_name` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -53,7 +53,7 @@ CREATE TABLE `assessments` (
   `time_management_score` decimal(5,2) NOT NULL,
   `qualitative_comments` text,
   `final_score` decimal(5,2) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -66,7 +66,7 @@ CREATE TABLE `assessors` (
   `username` varchar(50) NOT NULL,
   `password_hash` varchar(255) NOT NULL,
   `full_name` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -79,7 +79,7 @@ CREATE TABLE `internships` (
   `student_id` varchar(20) NOT NULL,
   `assessor_id` int(11) NOT NULL,
   `company_name` varchar(150) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -91,7 +91,7 @@ CREATE TABLE `students` (
   `student_id` varchar(20) NOT NULL,
   `student_name` varchar(100) NOT NULL,
   `programme` varchar(150) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Indexes for dumped tables
@@ -109,7 +109,7 @@ ALTER TABLE `admins`
 --
 ALTER TABLE `assessments`
   ADD PRIMARY KEY (`assessment_id`),
-  ADD KEY `internship_id` (`internship_id`);
+  ADD  UNIQUE KEY `internship_id` (`internship_id`);
 
 --
 -- Indexes for table `assessors`
@@ -123,7 +123,7 @@ ALTER TABLE `assessors`
 --
 ALTER TABLE `internships`
   ADD PRIMARY KEY (`internship_id`),
-  ADD KEY `student_id` (`student_id`),
+  ADD UNIQUE KEY `student_id` (`student_id`),
   ADD KEY `assessor_id` (`assessor_id`);
 
 --
@@ -140,25 +140,25 @@ ALTER TABLE `students`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `assessments`
 --
 ALTER TABLE `assessments`
-  MODIFY `assessment_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `assessment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `assessors`
 --
 ALTER TABLE `assessors`
-  MODIFY `assessor_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `assessor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `internships`
 --
 ALTER TABLE `internships`
-  MODIFY `internship_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `internship_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
@@ -176,6 +176,36 @@ ALTER TABLE `assessments`
 ALTER TABLE `internships`
   ADD CONSTRAINT `internships_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `students` (`student_id`) ON DELETE CASCADE,
   ADD CONSTRAINT `internships_ibfk_2` FOREIGN KEY (`assessor_id`) REFERENCES `assessors` (`assessor_id`) ON DELETE CASCADE;
+
+
+-- --------------------------------------------------------
+
+--
+-- Sample Data Insertion
+-- All passwords are 'password123'
+--
+
+INSERT INTO `admins` (`admin_id`, `username`, `password_hash`, `full_name`) VALUES
+(1, 'admin1', '$2y$10$eOzzO.Tf3.wE2rN1B.1i1u/D5M3f2j.Z/5q7rA0Xb8.E3U9o2rR2C', 'System Administrator');
+
+INSERT INTO `assessors` (`assessor_id`, `username`, `password_hash`, `full_name`) VALUES
+(1, 'assessor1', '$2y$10$eOzzO.Tf3.wE2rN1B.1i1u/D5M3f2j.Z/5q7rA0Xb8.E3U9o2rR2C', 'Dr. Alan Smith'),
+(2, 'assessor2', '$2y$10$eOzzO.Tf3.wE2rN1B.1i1u/D5M3f2j.Z/5q7rA0Xb8.E3U9o2rR2C', 'Prof. Sarah Jones');
+
+INSERT INTO `students` (`student_id`, `student_name`, `programme`) VALUES
+('S1001', 'Alice Johnson', 'BSc Computer Science'),
+('S1002', 'Bob Williams', 'BSc Software Engineering'),
+('S1003', 'Charlie Brown', 'BSc Information Technology');
+
+INSERT INTO `internships` (`internship_id`, `student_id`, `assessor_id`, `company_name`) VALUES
+(1, 'S1001', 1, 'Tech Innovations Inc.'),
+(2, 'S1002', 1, 'Data Driven Solutions'),
+(3, 'S1003', 2, 'Creative Web Agency');
+
+INSERT INTO `assessments` (`assessment_id`, `internship_id`, `tasks_score`, `health_safety_score`, `theory_score`, `presentation_score`, `clarity_score`, `lifelong_learning_score`, `project_management_score`, `time_management_score`, `qualitative_comments`, `final_score`) VALUES
+(1, 1, 85.00, 90.00, 80.00, 88.00, 85.00, 92.00, 80.00, 85.00, 'Alice showed excellent technical skills but could improve on project tracking documentation.', 85.75);
+
+-- --------------------------------------------------------
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
