@@ -7,11 +7,27 @@
 
 body {
     background-color: #f4f7f6;
-    height: 100vh;
+    min-height: 100vh; 
+    display: flex;
+    flex-direction: column; 
+}
+
+.login-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    flex-grow: 1;
+}
+
+.dashboard-container {
+    width: 95%;
+    max-width: 1200px;
+    margin: 40px auto; /* Centers the table with some top/bottom breathing room */
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
 
 h1 {
