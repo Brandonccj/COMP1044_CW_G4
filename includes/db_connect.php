@@ -2,7 +2,7 @@
 // db_connect.php
 $servername = "localhost";
 $username = "root"; // Default is usually 'root' for local development, but change this if you set a different username in phpMyAdmin
-$password = ""; // Default is usually blank
+$password = "root"; // Default is usually blank
 $dbname = "comp1044"; // Change this to the name of your database in phpMyAdmin
 
 // Create connection
