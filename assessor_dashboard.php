@@ -20,7 +20,7 @@ $query = "SELECT i.internship_id, i.company_name, s.student_id, s.student_name, 
           JOIN students s ON i.student_id = s.student_id
           WHERE i.assessor_id = ?";
 
-// Prepare and execute securely using MySQLi (Fixing the 500 Error)
+// Prepare and execute securely using MySQLi 
 $stmt = $conn->prepare($query);
 $stmt->bind_param("i", $assessor_id);
 $stmt->execute();
@@ -30,7 +30,7 @@ $result = $stmt->get_result();
 $assigned_students = $result->fetch_all(MYSQLI_ASSOC);
 $stmt->close();
 
-// Include your shared header (this brings in the CSS and Navigation Bar)
+// Include header
 require_once 'includes/header.php';
 ?>
 
@@ -73,6 +73,6 @@ require_once 'includes/header.php';
 </div>
 
 <?php 
-// Include your shared footer to close out the HTML properly
+// Include footer to close out the HTML properly
 require_once 'includes/footer.php'; 
 ?>
