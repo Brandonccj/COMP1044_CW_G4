@@ -38,6 +38,15 @@ require_once 'includes/header.php';
     <h2>Assessor Dashboard</h2>
     <p>Welcome! Here are the students assigned to you for assessment.</p>
 
+    <?php if (isset($_SESSION['message'])): ?>
+        <div class="alert">
+            <?php 
+                echo htmlspecialchars($_SESSION['message']); 
+                unset($_SESSION['message']);
+            ?>
+        </div>
+    <?php endif; ?>
+
     <table class="dashboard-table">
         <thead>
             <tr>
