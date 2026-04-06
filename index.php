@@ -14,7 +14,7 @@
             <h2>System Login</h2>
 
             <form action="actions/login_action.php" method="POST">
-                
+            
                 <div class="form-group">
                     <label for="role">Login As:</label>
                     <select name="role" id="role" required>
@@ -34,9 +34,11 @@
                 </div>
 
                 <button type="submit" name="login_submit">Log In</button>
-                
-            </form>
-        </div>
+            
+        </form>
     </div>
+
+<script src="assets/script.js"></script>
+
 </body>
 </html>
