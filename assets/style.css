@@ -214,3 +214,64 @@ button:hover {
 .action-btn:hover {
     background-color: #2980b9;
 }
+
+/* Manage_students.php */
+.management-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 30px; 
+}
+
+/* The 'Back to Dashboard' Link */
+.back-link {
+    display: inline-block;
+    margin-top: 30px;
+    color: #3498db;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.back-link:hover {
+    color: #2980b9;
+    text-decoration: underline;
+}
+
+/* Alert Popups */
+.alert {
+    padding: 15px;
+    margin-bottom: 25px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+/* Specific Button Colors */
+.btn-success {
+    background-color: #2ecc71;
+}
+
+.btn-success:hover {
+    background-color: #27ae60;
+}
+
+.btn-danger {
+    background-color: #e74c3c;
+    padding: 8px 12px; 
+    width: auto; /* Stops the delete button from taking up the whole table cell */
+}
+
+.btn-danger:hover {
+    background-color: #c0392b;
+}
+
+/* Prevents the table from breaking the card layout on small screens */
+.table-responsive {
+    overflow-x: auto;
+}
