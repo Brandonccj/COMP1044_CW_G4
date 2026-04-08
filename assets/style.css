@@ -1,3 +1,6 @@
+/* =========================================
+   Global & Base Styles
+   ========================================= */
 * {
     margin: 0;
     padding: 0;
@@ -12,18 +15,10 @@ body {
     flex-direction: column; 
 }
 
-.login-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    flex-grow: 1;
-}
-
 .dashboard-container {
     width: 95%;
     max-width: 1200px;
-    margin: 40px auto; /* Centers the table with some top/bottom breathing room */
+    margin: 40px auto; 
     background-color: #ffffff;
     padding: 30px;
     border-radius: 8px;
@@ -34,48 +29,6 @@ h1 {
     color: #2c3e50;
     margin-bottom: 20px;
     text-align: center;
-}
-
-.login-container {
-    background-color: #ffffff;
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
-}
-
-.login-container h2 {
-    color: #333;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
-    color: #555;
-    font-weight: bold;
-}
-
-.form-group input, 
-.form-group select {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-}
-
-.form-group input:focus, 
-.form-group select:focus {
-    outline: none;
-    border-color: #3498db;
-    box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
 }
 
 button {
@@ -95,54 +48,105 @@ button:hover {
     background-color: #2980b9;
 }
 
-
-/* assessor_dashboard.php */
-
-/* Table Base Styles */
-.dashboard-table {
-    width: 100%;
-    border-collapse: collapse;
-    text-align: left;
-}
-
-.dashboard-table th, 
-.dashboard-table td {
-    border: 1px solid #ddd; 
+/* Flash Messages / Alerts */
+.alert {
+    background-color: #d4edda;
+    color: #155724;
     padding: 10px;
-}
-
-/* Replaces the inline background-color for the header */
-.dashboard-table thead tr {
-    background-color: #f2f2f2;
-}
-
-/* Replaces the inline text-align for the empty message */
-.empty-message {
+    margin: 15px 0;
+    border-radius: 5px;
     text-align: center;
-    font-style: italic;
-    color: #666;
+    border: 1px solid #c3e6cb;
 }
 
-/* Basic styling for the Evaluate button */
-.evaluate-btn {
-    padding: 5px 10px;
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
 }
 
-.evaluate-btn:hover {
-    background-color: #0056b3;
+/* Global Specific Buttons */
+.btn-success {
+    background-color: #23a057;
 }
 
-/* admin_dashboard.php */
-.dashboard-container {
-    width: 95%;
-    max-width: 1200px;
-    margin: 100px auto;
+.btn-success:hover {
+    background-color: #27ae60;
 }
+
+.btn-danger {
+    background-color: #e74c3c;
+    padding: 8px 12px; 
+    width: auto; 
+}
+
+.btn-danger:hover {
+    background-color: #c0392b;
+}
+
+.table-responsive {
+    overflow-x: auto;
+}
+
+/* Reusable Global Form Styles */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+    font-weight: bold;
+}
+
+.form-group input, 
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.form-group input:focus, 
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+}
+
+/* =========================================
+   index.php (Login)
+   ========================================= */
+.login-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.login-container {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+.login-container h2 {
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* =========================================
+   admin_dashboard.php & Shared Admin Layouts
+   ========================================= */
 .dashboard-header {
     margin-bottom: 30px; 
     border-bottom: 2px solid #ecf0f1; 
@@ -162,41 +166,29 @@ button:hover {
 
 .admin-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    justify-content: center;
-    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
     margin-top: 20px;
 }
 
 .admin-card {
-    background-color: #ffffff;
-    padding: 25px;
+    padding: 20px;
+    border: 1px solid #ddd;
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-    border-top: 4px solid #3498db; 
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.admin-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
 }
 
 .admin-card h2 {
     color: #2c3e50;
-    font-size: 1.4em;
-    margin-bottom: 10px;
+    font-size: 1.2em;
+    margin-bottom: 15px;
 }
 
 .admin-card p {
-    color: #555;
-    font-size: 0.95em;
-    line-height: 1.5;
-    margin-bottom: 25px;
-    flex-grow: 1; 
+    margin-bottom: 15px;
+    color: #666;
 }
 
 .action-btn {
@@ -215,68 +207,157 @@ button:hover {
     background-color: #2980b9;
 }
 
-/* Manage_students.php */
+/* =========================================
+   assessor_dashboard.php
+   ========================================= */
+.dashboard-table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.dashboard-table th, 
+.dashboard-table td {
+    padding: 10px;
+}
+
+.dashboard-table thead tr {
+    background-color: #3498db;
+    color: white;
+    text-align: left;
+}
+
+.dashboard-table tbody tr {
+    border-bottom: 1px solid #ddd;
+}
+
+.empty-message {
+    padding: 20px;
+    text-align: center;
+    font-style: italic; 
+    color: #666;
+}
+
+.evaluate-btn {
+    padding: 5px 10px;
+    background-color: #23a057;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    width: auto;
+    transition: background-color 0.3s;
+}
+
+.evaluate-btn:hover {
+    background-color: #27ae60; 
+}
+
+/* =========================================
+   evaluate_student.php
+   ========================================= */
+.page-header {
+    margin-bottom: 20px;
+}
+
+.back-link {
+    text-decoration: none; 
+    color: #3498db;
+    font-weight: bold;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+.evaluation-header {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+    border-left: 5px solid #3498db;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.evaluation-header p {
+    margin-bottom: 8px;
+    color: #2c3e50;
+    font-size: 1.1em;
+}
+
+.form-subtitle {
+    color: #7f8c8d; 
+    font-size: 0.9em; 
+    margin-bottom: 20px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.comment-section {
+    margin-top: 20px;
+}
+
+textarea#qualitative_comments {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    resize: vertical;
+    min-height: 120px;
+}
+
+textarea#qualitative_comments:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+}
+
+.btn-submit {
+    background-color: #23a057;
+    color: white;
+    padding: 15px 20px;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    margin-top: 10px;
+}
+
+.btn-submit:hover {
+    background-color: #27ae60;
+}
+
+.btn-submit:active {
+    transform: scale(0.98);
+}
+
+@media (max-width: 768px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* =========================================
+   manage_students.php
+   ========================================= */
 .management-layout {
     display: flex;
     flex-direction: column;
     gap: 30px; 
 }
 
-/* The 'Back to Dashboard' Link */
-.back-link {
-    display: inline-block;
-    margin-top: 30px;
-    color: #3498db;
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s;
-}
-
-.back-link:hover {
-    color: #2980b9;
-    text-decoration: underline;
-}
-
-/* Alert Popups */
-.alert {
-    padding: 15px;
-    margin-bottom: 25px;
-    border-radius: 5px;
-    font-weight: bold;
-    text-align: center;
-}
-
-.alert-success {
-    background-color: #d4edda;
-    color: #155724;
-    border: 1px solid #c3e6cb;
-}
-
-/* Specific Button Colors */
-.btn-success {
-    background-color: #2ecc71;
-}
-
-.btn-success:hover {
-    background-color: #27ae60;
-}
-
-.btn-danger {
-    background-color: #e74c3c;
-    padding: 8px 12px; 
-    width: auto; /* Stops the delete button from taking up the whole table cell */
-}
-
-.btn-danger:hover {
-    background-color: #c0392b;
-}
-
-/* Prevents the table from breaking the card layout on small screens */
-.table-responsive {
-    overflow-x: auto;
-}
-
-/* view_results.php */
+/* =========================================
+   view_results.php
+   ========================================= */
 .search-form {
     display: flex;
     gap: 10px;
