@@ -262,9 +262,12 @@ button:hover {
 }
 
 .back-link {
-    text-decoration: none; 
+    display: block;
+    text-align: left;
+    width: fit-content;
     color: #3498db;
     font-weight: bold;
+    margin-bottom: 20px;
 }
 
 .back-link:hover {
@@ -378,4 +381,40 @@ textarea#qualitative_comments:focus {
     border-radius: 4px;
     font-weight: bold;
     cursor: pointer;
+    width: auto;
+}
+
+/* Layout for the title and search bar */
+.results-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.results-header h2 {
+    margin: 0;
+}
+
+/* Clear Button specific formatting */
+.search-form .btn-clear {
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+/* Table Text Colors & Styles */
+.score-graded {
+    font-weight: bold;
+    color: #2ecc71; /* Green */
+}
+
+.score-comments {
+    font-size: 0.9em;
+    color: #555; /* Dark Grey */
+}
+
+.score-pending {
+    color: #e67e22; /* Orange */
+    font-style: italic;
 }

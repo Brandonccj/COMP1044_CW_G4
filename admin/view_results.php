@@ -22,20 +22,23 @@ if (isset($_GET['search']) && !empty(trim($_GET['search']))) {
 ?>
 
 <main class="dashboard-container">
+
+    <a href="../admin_dashboard.php" class="back-link">← Back to Dashboard</a>
+
     <header class="dashboard-header">
         <h1>System Results Overview</h1>
     </header>
 
     <div class="management-layout">
         <section class="admin-card">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                <h2 style="margin: 0;">All Internship Results</h2>
+            <div class="results-header">
+                <h2>All Internship Results</h2>
                 
                 <form action="view_results.php" method="GET" class="search-form">
                     <input type="text" name="search" placeholder="Search by ID or Name..." value="<?php echo htmlspecialchars($search_query); ?>">
                     <button type="submit" class="btn-success">Search</button>
                     <?php if (!empty($search_query)): ?>
-                        <a href="view_results.php" class="btn-danger" style="text-decoration: none; display: inline-block; text-align: center;">Clear</a>
+                        <a href="view_results.php" class="btn-danger btn-clear">Clear</a>
                     <?php endif; ?>
                 </form>
             </div>
@@ -78,10 +81,12 @@ if (isset($_GET['search']) && !empty(trim($_GET['search']))) {
                                 
                                 // Check if the assessment exists
                                 if ($row['final_score'] !== null) {
-                                    echo "<td style='font-weight: bold; color: #2ecc71;'>" . htmlspecialchars($row['final_score']) . "%</td>";
-                                    echo "<td style='font-size: 0.9em; color: #555;'>" . htmlspecialchars($row['qualitative_comments']) . "</td>";
+                                    // Replaced inline styles with .score-graded and .score-comments
+                                    echo "<td class='score-graded'>" . htmlspecialchars($row['final_score']) . "%</td>";
+                                    echo "<td class='score-comments'>" . htmlspecialchars($row['qualitative_comments']) . "</td>";
                                 } else {
-                                    echo "<td colspan='2' style='color: #e67e22; font-style: italic;'>Evaluation Pending</td>";
+                                    // Replaced inline style with .score-pending
+                                    echo "<td colspan='2' class='score-pending'>Evaluation Pending</td>";
                                 }
                                 echo "</tr>";
                             }
@@ -95,8 +100,6 @@ if (isset($_GET['search']) && !empty(trim($_GET['search']))) {
             </div>
         </section>
     </div>
-
-    <a href="../admin_dashboard.php" class="back-link">← Back to Dashboard</a>
 </main>
 
 <?php include '../includes/footer.php'; ?>

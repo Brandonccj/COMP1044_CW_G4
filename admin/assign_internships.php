@@ -16,6 +16,8 @@ $assessors_result = mysqli_query($conn, "SELECT assessor_id, full_name FROM asse
 ?>
 
 <main class="dashboard-container">
+    <a href="../admin_dashboard.php" class="back-link">← Back to Dashboard</a>
+
     <header class="dashboard-header">
         <h1>Internship Management</h1>
     </header>
@@ -115,6 +117,5 @@ $assessors_result = mysqli_query($conn, "SELECT assessor_id, full_name FROM asse
         </section>
     </div>
 
-    <a href="../admin_dashboard.php" class="back-link">← Back to Dashboard</a>
 </main>
 <?php include '../includes/footer.php'; ?>

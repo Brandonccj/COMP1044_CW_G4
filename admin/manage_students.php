@@ -16,6 +16,9 @@ include '../includes/header.php';
 ?>
 
 <main class="dashboard-container">
+    
+    <a href="../admin_dashboard.php" class="back-link">← Back to Dashboard</a>
+
     <header class="dashboard-header">
         <h1>Manage Student Records</h1>
     </header>
@@ -95,7 +98,7 @@ include '../includes/header.php';
                 </table>
             </div>
         </section>
-    </div> <a href="../admin_dashboard.php" class="back-link">← Back to Dashboard</a>
+    </div> 
 </main>
 
 <?php 

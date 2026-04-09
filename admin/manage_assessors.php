@@ -11,6 +11,9 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'Admin') {
 include '../includes/header.php'; 
 ?>
 <main class="dashboard-container">
+
+    <a href="../admin_dashboard.php" class="back-link">← Back to Dashboard</a>
+
     <header class="dashboard-header">
         <h1>Manage Assessor Accounts</h1>
     </header>
@@ -90,8 +93,6 @@ include '../includes/header.php';
             </div>
         </section>
     </div>
-
-    <a href="../admin_dashboard.php" class="back-link">← Back to Dashboard</a>
 
 </main>
 <?php include '../includes/footer.php'; ?>
