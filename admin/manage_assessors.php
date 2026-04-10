@@ -34,8 +34,8 @@ include '../includes/header.php';
                 <input type="hidden" name="action" value="add">
                 
                 <div class="form-group">
-                    <label for="full_name">Full Name (e.g., Dr. Alan Smith):</label>
-                    <input type="text" name="full_name" id="full_name" required>
+                    <label for="full_name">Full Name:</label>
+                    <input type="text" name="full_name" id="full_name" required placeholder="e.g., Dr. Alan Smith">
                 </div>
 
                 <div class="form-group">

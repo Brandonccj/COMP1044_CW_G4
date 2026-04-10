@@ -18,7 +18,7 @@ body {
 .dashboard-container {
     width: 95%;
     max-width: 1200px;
-    margin: 40px auto; 
+    margin: 120px auto; 
     background-color: #ffffff;
     padding: 30px;
     border-radius: 8px;
@@ -189,6 +189,13 @@ button:hover {
 .admin-card p {
     margin-bottom: 15px;
     color: #666;
+}
+
+/* Restrict the width of forms inside admin cards and fix label alignment */
+.admin-card form:not(.search-form) {
+    max-width: 600px;    /* Stops the inputs from stretching across the whole screen */
+    margin: 0 auto;      /* Centers the form neatly inside the wide card */
+    text-align: left;    /* Pushes the labels back to the left edge where they belong */
 }
 
 .action-btn {

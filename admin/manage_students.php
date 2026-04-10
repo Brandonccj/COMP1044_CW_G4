@@ -45,7 +45,7 @@ include '../includes/header.php';
 
                 <div class="form-group">
                     <label for="student_name">Full Name:</label>
-                    <input type="text" name="student_name" id="student_name" required>
+                    <input type="text" name="student_name" id="student_name" required placeholder="e.g., Peter Parker">
                 </div>
 
                 <div class="form-group">
