@@ -3,7 +3,7 @@ session_start();
 require_once '../includes/auth_check.php';
 require_once '../includes/db_connect.php';
 
-if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'Admin') {
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'Assessor') {
     header("Location: ../index.php");
     exit();
 }

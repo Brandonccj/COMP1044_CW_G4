@@ -1,51 +1,46 @@
 <?php
-// Include the security bouncer you built (this also starts the session automatically)
 require_once 'includes/auth_check.php';
 
-// Double-check they are actually an Assessor, so Admins can't snoop on this page
 if ($_SESSION['role'] !== 'Assessor') {
     header("Location: index.php");
     exit();
 }
 
-// Require the database connection
 require_once 'includes/db_connect.php';
 
-// Get the logged-in assessor's ID from the session
 $assessor_id = $_SESSION['user_id'];
 
-// The SQL JOIN Query
-$query = "SELECT i.internship_id, i.company_name, s.student_id, s.student_name, s.programme 
+$query = "SELECT i.internship_id, i.company_name, s.student_id, s.student_name, s.programme,
+                 (SELECT COUNT(*) FROM assessments a WHERE a.internship_id = i.internship_id) AS is_graded
           FROM internships i
           JOIN students s ON i.student_id = s.student_id
           WHERE i.assessor_id = ?";
 
-// Prepare and execute securely using MySQLi 
 $stmt = $conn->prepare($query);
 $stmt->bind_param("i", $assessor_id);
 $stmt->execute();
 $result = $stmt->get_result();
-
-// Fetch all rows into an associative array
 $assigned_students = $result->fetch_all(MYSQLI_ASSOC);
 $stmt->close();
 
-// Include header
 require_once 'includes/header.php';
 ?>
 
 <div class="dashboard-container">
     <h2>Assessor Dashboard</h2>
-    <p>Welcome! Here are the students assigned to you for assessment.</p>
+    <p>Welcome, <strong><?php echo htmlspecialchars($_SESSION['username']); ?></strong>! Here are the students assigned to you.</p>
 
     <?php if (isset($_SESSION['message'])): ?>
-        <div class="alert">
-            <?php 
-                echo htmlspecialchars($_SESSION['message']); 
-                unset($_SESSION['message']);
-            ?>
+        <div class="alert alert-<?php echo ($_SESSION['message_type'] ?? '') === 'error' ? 'danger' : 'success'; ?>">
+            <?php echo htmlspecialchars($_SESSION['message']); unset($_SESSION['message']); unset($_SESSION['message_type']); ?>
         </div>
     <?php endif; ?>
+
+    <div style="margin-bottom: 16px; text-align: right;">
+        <a href="assessor/view_results.php" class="action-btn" style="display:inline-block; width:auto; padding:10px 20px;">
+            View My Results
+        </a>
+    </div>
 
     <table class="dashboard-table">
         <thead>
@@ -53,7 +48,8 @@ require_once 'includes/header.php';
                 <th>Student ID</th>
                 <th>Student Name</th>
                 <th>Programme</th>
-                <th>Company Name</th>
+                <th>Company</th>
+                <th>Status</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -66,22 +62,28 @@ require_once 'includes/header.php';
                         <td><?php echo htmlspecialchars($student['programme']); ?></td>
                         <td><?php echo htmlspecialchars($student['company_name']); ?></td>
                         <td>
+                            <?php if ($student['is_graded']): ?>
+                                <span style="color:#27ae60; font-weight:bold;">&#10003; Graded</span>
+                            <?php else: ?>
+                                <span style="color:#e67e22;">Pending</span>
+                            <?php endif; ?>
+                        </td>
+                        <td>
                             <a href="assessor/evaluate_student.php?internship_id=<?php echo $student['internship_id']; ?>">
-                                <button class="evaluate-btn">Evaluate</button>
+                                <button class="evaluate-btn">
+                                    <?php echo $student['is_graded'] ? 'Update' : 'Evaluate'; ?>
+                                </button>
                             </a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
             <?php else: ?>
                 <tr>
-                    <td colspan="5" class="empty-message">No students are currently assigned to you.</td>
+                    <td colspan="6" class="empty-message">No students are currently assigned to you.</td>
                 </tr>
             <?php endif; ?>
         </tbody>
     </table>
 </div>
 
-<?php 
-// Include footer to close out the HTML properly
-require_once 'includes/footer.php'; 
-?>
+<?php require_once 'includes/footer.php'; ?>
