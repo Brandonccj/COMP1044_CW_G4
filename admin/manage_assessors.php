@@ -18,15 +18,8 @@ include '../includes/header.php';
         <h1>Manage Assessor Accounts</h1>
     </header>
 
-    <?php if (isset($_SESSION['message'])): ?>
-        <div class="alert alert-<?php echo ($_SESSION['message_type'] ?? '') === 'error' ? 'danger' : 'success'; ?>">
-            <?php echo htmlspecialchars($_SESSION['message']); unset($_SESSION['message']); unset($_SESSION['message_type']); ?>
-        </div>
-    <?php endif; ?>
-
     <div class="management-layout">
 
-        <!-- CREATE ASSESSOR FORM -->
         <section class="admin-card">
             <h2>Create New Assessor Account</h2>
             <form action="../actions/save_assessor.php" method="POST">
@@ -47,7 +40,6 @@ include '../includes/header.php';
             </form>
         </section>
 
-        <!-- ASSESSOR TABLE -->
         <section class="admin-card">
             <h2>Registered Assessors</h2>
             <div class="table-responsive">
@@ -74,11 +66,13 @@ include '../includes/header.php';
                                     <td>{$user}</td>
                                     <td style='display:flex;gap:6px;flex-wrap:wrap;'>
                                         <button class='btn-edit' onclick=\"openEditModal('{$aid}', '{$name}', '{$user}')\">Edit</button>
-                                        <form action='../actions/save_assessor.php' method='POST' style='display:inline;'>
+                                        
+                                        <form action='../actions/save_assessor.php' method='POST' style='display:inline;' class='delete-form' data-confirm-msg='Delete assessor {$name}? Their internship assignments will also be removed.'>
                                             <input type='hidden' name='action' value='delete'>
                                             <input type='hidden' name='assessor_id' value='{$aid}'>
-                                            <button type='submit' class='btn-danger' onclick='return confirm(\"Delete assessor {$name}? Their internship assignments will also be removed.\")'>Delete</button>
+                                            <button type='submit' class='btn-danger'>Delete</button>
                                         </form>
+                                        
                                     </td>
                                 </tr>";
                             }
@@ -92,7 +86,6 @@ include '../includes/header.php';
         </section>
     </div>
 
-    <!-- EDIT MODAL -->
     <div id="editModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:1000; align-items:center; justify-content:center;">
         <div style="background:var(--modal-bg, #fff); padding:30px; border-radius:10px; width:90%; max-width:460px; box-shadow:0 10px 30px rgba(0,0,0,0.2);">
             <h2 style="margin-bottom:20px; color:#2c3e50;">Edit Assessor</h2>

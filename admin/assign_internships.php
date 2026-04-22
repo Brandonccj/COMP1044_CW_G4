@@ -22,15 +22,6 @@ $assessors_result = mysqli_query($conn, "SELECT assessor_id, full_name FROM asse
         <h1>Internship Management</h1>
     </header>
 
-    <?php if (isset($_SESSION['message'])): ?>
-        <div class="alert alert-success">
-            <?php 
-                echo htmlspecialchars($_SESSION['message']); 
-                unset($_SESSION['message']);
-            ?>
-        </div>
-    <?php endif; ?>
-
     <div class="management-layout">
         <section class="admin-card">
             <h2>Assign Student to Internship</h2>
@@ -99,10 +90,10 @@ $assessors_result = mysqli_query($conn, "SELECT assessor_id, full_name FROM asse
                                 echo "<td>" . htmlspecialchars($row['company_name']) . "</td>";
                                 echo "<td>" . htmlspecialchars($row['assessor_name']) . "</td>";
                                 echo "<td>
-                                        <form action='../actions/save_internship.php' method='POST' style='display:inline;'>
+                                        <form action='../actions/save_internship.php' method='POST' style='display:inline;' class='delete-form' data-confirm-msg='Remove this internship assignment?'>
                                             <input type='hidden' name='action' value='delete'>
                                             <input type='hidden' name='internship_id' value='" . htmlspecialchars($row['internship_id']) . "'>
-                                            <button type='submit' class='btn-danger' onclick='return confirm(\"Remove this internship assignment?\")'>Remove</button>
+                                            <button type='submit' class='btn-danger'>Remove</button>
                                         </form>
                                       </td>";
                                 echo "</tr>";

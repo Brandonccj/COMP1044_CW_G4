@@ -30,12 +30,6 @@ require_once 'includes/header.php';
     <h2>Assessor Dashboard</h2>
     <p>Welcome, <strong><?php echo htmlspecialchars($_SESSION['username']); ?></strong>! Here are the students assigned to you.</p>
 
-    <?php if (isset($_SESSION['message'])): ?>
-        <div class="alert alert-<?php echo ($_SESSION['message_type'] ?? '') === 'error' ? 'danger' : 'success'; ?>">
-            <?php echo htmlspecialchars($_SESSION['message']); unset($_SESSION['message']); unset($_SESSION['message_type']); ?>
-        </div>
-    <?php endif; ?>
-
     <div style="margin-bottom: 16px; text-align: right;">
         <a href="assessor/view_results.php" class="action-btn" style="display:inline-block; width:auto; padding:10px 20px;">
             View My Results

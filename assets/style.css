@@ -1,427 +1,831 @@
 /* =========================================
-   Global & Base Styles
+   Google Font Import - Inter
    ========================================= */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
-body {
-    background-color: #f4f7f6;
-    min-height: 100vh; 
-    display: flex;
-    flex-direction: column; 
-}
+/* =========================================
+   CSS Variables — Light Mode
+   ========================================= */
+:root {
+    --bg-page:        #f0f2f5;
+    --bg-card:        #ffffff;
+    --bg-input:       #ffffff;
+    --bg-table-head:  #4f46e5;
+    --bg-table-row:   #ffffff;
+    --bg-table-alt:   #f8f9ff;
+    --bg-nav:         #1e1b4b;
+    --bg-modal:       #ffffff;
 
-.dashboard-container {
-    width: 95%;
-    max-width: 1200px;
-    margin: 120px auto; 
-    background-color: #ffffff;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-}
+    --accent:         #4f46e5;
+    --accent-hover:   #4338ca;
+    --accent-light:   #eef2ff;
 
-h1 {
-    color: #2c3e50;
-    margin-bottom: 20px;
-    text-align: center;
-}
+    --green:          #10b981;
+    --green-hover:    #059669;
+    --green-light:    #d1fae5;
 
-button {
-    width: 100%;
-    padding: 12px;
-    background-color: #3498db;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
+    --red:            #ef4444;
+    --red-hover:      #dc2626;
+    --red-light:      #fee2e2;
 
-button:hover {
-    background-color: #2980b9;
-}
+    --orange:         #f59e0b;
+    --orange-hover:   #d97706;
 
-/* Flash Messages / Alerts */
-.alert {
-    background-color: #d4edda;
-    color: #155724;
-    padding: 10px;
-    margin: 15px 0;
-    border-radius: 5px;
-    text-align: center;
-    border: 1px solid #c3e6cb;
-}
+    --text-primary:   #111827;
+    --text-secondary: #6b7280;
+    --text-muted:     #9ca3af;
+    --text-on-accent: #ffffff;
 
-.alert-success {
-    background-color: #d4edda;
-    color: #155724;
-    border: 1px solid #c3e6cb;
-}
+    --border:         #e5e7eb;
+    --border-focus:   #4f46e5;
 
-/* Global Specific Buttons */
-.btn-success {
-    background-color: #23a057;
-}
+    --shadow-sm:  0 1px 3px rgba(0,0,0,0.08);
+    --shadow-md:  0 4px 16px rgba(0,0,0,0.08);
+    --shadow-lg:  0 10px 40px rgba(0,0,0,0.12);
 
-.btn-success:hover {
-    background-color: #27ae60;
-}
+    --radius-sm:  6px;
+    --radius-md:  10px;
+    --radius-lg:  14px;
 
-.btn-danger {
-    background-color: #e74c3c;
-    padding: 8px 12px; 
-    width: auto; 
-}
-
-.btn-danger:hover {
-    background-color: #c0392b;
-}
-
-.table-responsive {
-    overflow-x: auto;
-}
-
-/* Reusable Global Form Styles */
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
-    color: #555;
-    font-weight: bold;
-}
-
-.form-group input, 
-.form-group select,
-.form-group textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-}
-
-.form-group input:focus, 
-.form-group select:focus,
-.form-group textarea:focus {
-    outline: none;
-    border-color: #3498db;
-    box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+    --transition: all 0.2s ease;
+    --nav-height: 64px;
 }
 
 /* =========================================
-   index.php (Login)
+   Dark Mode Variables
    ========================================= */
+[data-theme="dark"] {
+    --bg-page:       #0f0f1a;
+    --bg-card:       #1a1a2e;
+    --bg-input:      #16213e;
+    --bg-table-head: #312e81;
+    --bg-table-row:  #1a1a2e;
+    --bg-table-alt:  #16213e;
+    --bg-nav:        #0d0d1a;
+    --bg-modal:      #1a1a2e;
+
+    --accent:        #6366f1;
+    --accent-hover:  #4f46e5;
+    --accent-light:  #1e1b4b;
+
+    --green:         #10b981;
+    --green-hover:   #059669;
+    --green-light:   #064e3b;
+
+    --red:           #f87171;
+    --red-hover:     #ef4444;
+    --red-light:     #450a0a;
+
+    --orange:        #fbbf24;
+    --orange-hover:  #f59e0b;
+
+    --text-primary:   #f1f5f9;
+    --text-secondary: #94a3b8;
+    --text-muted:     #64748b;
+
+    --border:         #2d2d4e;
+    --border-focus:   #6366f1;
+
+    --shadow-sm:  0 1px 3px rgba(0,0,0,0.4);
+    --shadow-md:  0 4px 16px rgba(0,0,0,0.4);
+    --shadow-lg:  0 10px 40px rgba(0,0,0,0.5);
+}
+
+/* =========================================
+   Reset & Base
+   ========================================= */
+*, *::before, *::after {
+    margin: 0; padding: 0; box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    background: var(--bg-page);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+h1, h2, h3, h4 {
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.3;
+}
+
+/* =========================================
+   Animations
+   ========================================= */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to   { opacity: 1; transform: scale(1); }
+}
+
+main, .dashboard-container {
+    animation: fadeInUp 0.4s ease both;
+}
+
+/* =========================================
+   Navigation
+   ========================================= */
+.site-nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: var(--nav-height);
+    background: var(--bg-nav);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 28px;
+    z-index: 100;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.25);
+    transition: background 0.3s ease;
+}
+
+.nav-brand {
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.05em;
+    letter-spacing: -0.3px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav-brand::before {
+    content: '';
+    width: 8px; height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--accent);
+    flex-shrink: 0;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.nav-user {
+    color: #c7d2fe;
+    font-size: 0.85em;
+    font-weight: 500;
+}
+
+.nav-logout {
+    color: #f87171;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.85em;
+    padding: 6px 14px;
+    border: 1px solid rgba(248,113,113,0.3);
+    border-radius: var(--radius-sm);
+    transition: var(--transition);
+}
+.nav-logout:hover {
+    background: rgba(248,113,113,0.1);
+    border-color: #f87171;
+}
+
+.theme-toggle {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: #e2e8f0;
+    width: 36px; height: 36px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    transition: var(--transition);
+    flex-shrink: 0;
+    padding: 0;
+    line-height: 1;
+}
+.theme-toggle:hover {
+    background: rgba(255,255,255,0.15);
+    transform: none;
+}
+
+/* =========================================
+   Main Container
+   ========================================= */
+.dashboard-container {
+    width: 95%;
+    max-width: 1200px;
+    margin: calc(var(--nav-height) + 32px) auto 40px;
+    background: var(--bg-card);
+    padding: 32px;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border);
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+/* =========================================
+   Dashboard Header
+   ========================================= */
+.dashboard-header {
+    margin-bottom: 28px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+    text-align: center;
+}
+.dashboard-header h1 {
+    font-size: 1.55em;
+    font-weight: 700;
+    margin: 0;
+}
+.dashboard-header p {
+    color: var(--text-secondary);
+    margin-top: 6px;
+    font-size: 0.9em;
+}
+
+/* =========================================
+   Admin Grid
+   ========================================= */
+.admin-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 18px;
+    margin-top: 24px;
+}
+
+.admin-card {
+    padding: 24px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    text-align: center;
+    background: var(--bg-card);
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+    animation: fadeInUp 0.4s ease both;
+}
+.admin-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--accent);
+}
+.admin-card h2 { font-size: 1.05em; margin-bottom: 10px; }
+.admin-card p  { margin-bottom: 18px; color: var(--text-secondary); font-size: 0.875em; }
+.admin-card form:not(.search-form) {
+    max-width: 600px; margin: 0 auto; text-align: left;
+}
+
+/* =========================================
+   Action Button
+   ========================================= */
+.action-btn {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    padding: 11px 16px;
+    background: var(--accent);
+    color: var(--text-on-accent);
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    font-size: 0.875em;
+    transition: var(--transition);
+}
+.action-btn:hover {
+    background: var(--accent-hover);
+    transform: translateY(-1px);
+}
+
+/* =========================================
+   Back Link
+   ========================================= */
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--accent);
+    font-weight: 500;
+    font-size: 0.875em;
+    text-decoration: none;
+    margin-bottom: 20px;
+    transition: var(--transition);
+}
+.back-link:hover { gap: 10px; color: var(--accent-hover); }
+
+/* =========================================
+   Buttons
+   ========================================= */
+button {
+    width: 100%;
+    padding: 11px 16px;
+    background: var(--accent);
+    color: var(--text-on-accent);
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: 0.9em;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    transition: var(--transition);
+}
+button:hover  { background: var(--accent-hover); transform: translateY(-1px); }
+button:active { transform: scale(0.98); }
+
+.btn-success { background: var(--green); }
+.btn-success:hover { background: var(--green-hover); }
+
+.btn-danger { background: var(--red); padding: 7px 14px; width: auto; font-size: 0.85em; }
+.btn-danger:hover { background: var(--red-hover); }
+
+.btn-edit {
+    background: var(--orange);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-sm);
+    padding: 7px 14px;
+    width: auto;
+    cursor: pointer;
+    font-size: 0.85em;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    transition: var(--transition);
+}
+.btn-edit:hover { background: var(--orange-hover); transform: translateY(-1px); }
+
+.btn-submit {
+    background: var(--green);
+    color: white;
+    padding: 13px 20px;
+    font-size: 1em;
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    width: 100%;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    transition: var(--transition);
+    margin-top: 10px;
+}
+.btn-submit:hover  { background: var(--green-hover); transform: translateY(-1px); }
+.btn-submit:active { transform: scale(0.98); }
+
+/* =========================================
+   Forms
+   ========================================= */
+.form-group { margin-bottom: 18px; }
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--text-secondary);
+    font-weight: 500;
+    font-size: 0.85em;
+    letter-spacing: 0.2px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-size: 0.9em;
+    font-family: 'Inter', sans-serif;
+    background: var(--bg-input);
+    color: var(--text-primary);
+    transition: var(--transition);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder { color: var(--text-muted); }
+
+.max-label { color: var(--text-muted); font-weight: 400; font-size: 0.85em; }
+.form-subtitle { color: var(--text-secondary); font-size: 0.85em; margin-bottom: 20px; }
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin-bottom: 20px;
+}
+
+.comment-section { margin-top: 20px; }
+
+textarea#qualitative_comments {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-size: 0.9em;
+    font-family: 'Inter', sans-serif;
+    resize: vertical;
+    min-height: 120px;
+    background: var(--bg-input);
+    color: var(--text-primary);
+    transition: var(--transition);
+}
+textarea#qualitative_comments:focus {
+    outline: none;
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
+}
+
+/* =========================================
+   Alerts & Toast Notifications
+   ========================================= */
+.toast-notification {
+    position: fixed;
+    top: 80px; /* Sits just below the nav bar */
+    right: -400px; /* Hidden initially */
+    width: 320px;
+    z-index: 9999; /* Guarantees it overlaps everything */
+    padding: 16px 20px;
+    border-radius: var(--radius-md);
+    font-weight: 500;
+    font-size: 0.9em;
+    box-shadow: var(--shadow-lg);
+    background: var(--bg-card);
+    /* Slide in animation */
+    animation: slideInToast 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* This class gets added by JavaScript to trigger the smooth exit */
+.toast-notification.hide {
+    animation: fadeOutToast 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideInToast {
+    from { right: -400px; opacity: 0; }
+    to { right: 24px; opacity: 1; }
+}
+
+@keyframes fadeOutToast {
+    from { right: 24px; opacity: 1; }
+    to { right: -400px; opacity: 0; }
+}
+
+.alert-success { border-left: 5px solid var(--green); color: var(--green); }
+.alert-danger  { border-left: 5px solid var(--red); color: var(--red); }
+/* =========================================
+   Tables
+   ========================================= */
+.table-responsive { overflow-x: auto; }
+
+.dashboard-table {
+    width: 100%;
+    margin-top: 16px;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 0.875em;
+}
+.dashboard-table th,
+.dashboard-table td { padding: 12px 14px; }
+
+.dashboard-table thead tr {
+    background: var(--bg-table-head);
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.8em;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+.dashboard-table thead th:first-child { border-radius: var(--radius-sm) 0 0 0; }
+.dashboard-table thead th:last-child  { border-radius: 0 var(--radius-sm) 0 0; }
+
+.dashboard-table tbody tr {
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-table-row);
+    transition: background 0.15s ease;
+}
+.dashboard-table tbody tr:nth-child(even) { background: var(--bg-table-alt); }
+.dashboard-table tbody tr:hover { background: var(--accent-light); }
+
+.empty-message {
+    padding: 32px;
+    text-align: center;
+    font-style: italic;
+    color: var(--text-muted);
+}
+
+/* =========================================
+   Score Colors
+   ========================================= */
+.score-graded   { font-weight: 700; color: var(--green); }
+.score-comments { font-size: 0.85em; color: var(--text-secondary); }
+.score-pending  { color: var(--orange); font-style: italic; font-size: 0.875em; }
+
+/* =========================================
+   Evaluate Button
+   ========================================= */
+.evaluate-btn {
+    padding: 6px 14px;
+    background: var(--green);
+    color: white;
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    width: auto;
+    font-size: 0.85em;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    transition: var(--transition);
+}
+.evaluate-btn:hover { background: var(--green-hover); transform: translateY(-1px); }
+
+/* =========================================
+   Evaluation Header Info
+   ========================================= */
+.evaluation-header {
+    background: var(--accent-light);
+    padding: 18px 22px;
+    border-radius: var(--radius-md);
+    margin: 20px 0;
+    border-left: 4px solid var(--accent);
+    transition: background 0.3s ease;
+}
+.evaluation-header p { margin-bottom: 6px; font-size: 0.9em; }
+.evaluation-header p:last-child { margin-bottom: 0; }
+
+/* =========================================
+   Management Layout
+   ========================================= */
+.management-layout { display: flex; flex-direction: column; gap: 28px; }
+
+/* =========================================
+   Results / Search
+   ========================================= */
+.results-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+.results-header h2 { margin: 0; font-size: 1.05em; }
+
+.search-form { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.search-form input[type="text"] {
+    padding: 8px 14px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-size: 0.875em;
+    font-family: 'Inter', sans-serif;
+    background: var(--bg-input);
+    color: var(--text-primary);
+    min-width: 200px;
+    transition: var(--transition);
+}
+.search-form input[type="text"]:focus {
+    outline: none;
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 3px rgba(79,70,229,0.12);
+}
+
+.search-form button,
+.search-form a {
+    padding: 8px 16px;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    cursor: pointer;
+    width: auto;
+    font-size: 0.875em;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    transition: var(--transition);
+}
+.search-form .btn-clear { text-decoration: none; display: inline-flex; align-items: center; }
+
+/* =========================================
+   Login Page
+   ========================================= */
+.login-page-body {
+    background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #1e1b4b 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
 .login-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     flex-grow: 1;
+    width: 100%;
+}
+
+.login-logo {
+    color: #c7d2fe;
+    font-size: 0.875em;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.login-logo::before {
+    content: '';
+    width: 8px; height: 8px;
+    background: #6366f1;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #6366f1;
+}
+
+.login-title {
+    color: #ffffff;
+    font-size: 1.5em;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 32px;
+    letter-spacing: -0.3px;
 }
 
 .login-container {
-    background-color: #ffffff;
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    background: rgba(255,255,255,0.06);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 36px 40px;
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(255,255,255,0.12);
     width: 100%;
     max-width: 400px;
+    box-shadow: var(--shadow-lg);
+    animation: scaleIn 0.4s ease both;
 }
-
 .login-container h2 {
-    color: #333;
-    margin-bottom: 20px;
+    color: #fff;
+    margin-bottom: 24px;
     text-align: center;
-}
-
-/* =========================================
-   admin_dashboard.php & Shared Admin Layouts
-   ========================================= */
-.dashboard-header {
-    margin-bottom: 30px; 
-    border-bottom: 2px solid #ecf0f1; 
-    padding-bottom: 10px;
-    text-align: center;
-}
-
-.dashboard-header h1 {
-    color: #2c3e50; 
-    margin: 0;
-}
-
-.dashboard-header p {
-    color: #7f8c8d; 
-    margin-top: 5px;
-}
-
-.admin-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    margin-top: 20px;
-}
-
-.admin-card {
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    text-align: center;
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-}
-
-.admin-card h2 {
-    color: #2c3e50;
     font-size: 1.2em;
-    margin-bottom: 15px;
 }
-
-.admin-card p {
-    margin-bottom: 15px;
-    color: #666;
+.login-container .form-group label { color: #c7d2fe; }
+.login-container .form-group input,
+.login-container .form-group select {
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(255,255,255,0.15);
+    color: #fff;
 }
-
-/* Restrict the width of forms inside admin cards and fix label alignment */
-.admin-card form:not(.search-form) {
-    max-width: 600px;    /* Stops the inputs from stretching across the whole screen */
-    margin: 0 auto;      /* Centers the form neatly inside the wide card */
-    text-align: left;    /* Pushes the labels back to the left edge where they belong */
+.login-container .form-group input::placeholder { color: rgba(255,255,255,0.35); }
+.login-container .form-group input:focus,
+.login-container .form-group select:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99,102,241,0.25);
+    background: rgba(255,255,255,0.12);
 }
-
-.action-btn {
-    display: block;
-    text-align: center;
-    text-decoration: none;
-    padding: 12px 15px;
-    background-color: #3498db; 
-    color: white;
-    border-radius: 5px;
-    font-weight: bold;
-    transition: background-color 0.3s;
+.login-container .form-group select option { background: #1e1b4b; color: #fff; }
+.login-container button[type="submit"] {
+    background: #6366f1;
+    margin-top: 8px;
+    padding: 13px;
+    font-size: 1em;
 }
+.login-container button[type="submit"]:hover { background: #4f46e5; }
 
-.action-btn:hover {
-    background-color: #2980b9;
-}
-
-/* =========================================
-   assessor_dashboard.php
-   ========================================= */
-.dashboard-table {
-    width: 100%;
-    margin-top: 20px;
-    border-collapse: collapse;
-    text-align: left;
-}
-
-.dashboard-table th, 
-.dashboard-table td {
-    padding: 10px;
-}
-
-.dashboard-table thead tr {
-    background-color: #3498db;
-    color: white;
-    text-align: left;
-}
-
-.dashboard-table tbody tr {
-    border-bottom: 1px solid #ddd;
-}
-
-.empty-message {
-    padding: 20px;
-    text-align: center;
-    font-style: italic; 
-    color: #666;
-}
-
-.evaluate-btn {
-    padding: 5px 10px;
-    background-color: #23a057;
-    color: white;
-    border: none;
-    border-radius: 3px;
+.login-theme-toggle {
+    position: fixed;
+    top: 16px; right: 20px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #e2e8f0;
+    width: 38px; height: 38px;
+    border-radius: var(--radius-sm);
     cursor: pointer;
-    width: auto;
-    transition: background-color 0.3s;
-}
-
-.evaluate-btn:hover {
-    background-color: #27ae60; 
-}
-
-/* =========================================
-   evaluate_student.php
-   ========================================= */
-.page-header {
-    margin-bottom: 20px;
-}
-
-.back-link {
-    display: block;
-    text-align: left;
-    width: fit-content;
-    color: #3498db;
-    font-weight: bold;
-    margin-bottom: 20px;
-}
-
-.back-link:hover {
-    text-decoration: underline;
-}
-
-.evaluation-header {
-    background-color: #f8f9fa;
-    padding: 20px;
-    border-radius: 8px;
-    margin: 20px 0;
-    border-left: 5px solid #3498db;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-}
-
-.evaluation-header p {
-    margin-bottom: 8px;
-    color: #2c3e50;
-    font-size: 1.1em;
-}
-
-.form-subtitle {
-    color: #7f8c8d; 
-    font-size: 0.9em; 
-    margin-bottom: 20px;
-}
-
-.form-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    margin-bottom: 20px;
-}
-
-.comment-section {
-    margin-top: 20px;
-}
-
-textarea#qualitative_comments {
-    width: 100%;
-    padding: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
     font-size: 16px;
-    resize: vertical;
-    min-height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+    z-index: 200;
+    padding: 0;
+    line-height: 1;
+}
+.login-theme-toggle:hover { background: rgba(255,255,255,0.18); transform: none; }
+
+/* =========================================
+   Footer
+   ========================================= */
+.site-footer {
+    text-align: center;
+    padding: 18px;
+    background: var(--bg-nav);
+    color: var(--text-muted);
+    font-size: 0.8em;
+    margin-top: auto;
+    transition: background 0.3s ease;
 }
 
-textarea#qualitative_comments:focus {
-    outline: none;
-    border-color: #3498db;
-    box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
-}
-
-.btn-submit {
-    background-color: #23a057;
-    color: white;
-    padding: 15px 20px;
-    font-size: 1.1em;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 100%;
-    transition: background-color 0.3s ease, transform 0.1s ease;
-    margin-top: 10px;
-}
-
-.btn-submit:hover {
-    background-color: #27ae60;
-}
-
-.btn-submit:active {
-    transform: scale(0.98);
-}
-
+/* =========================================
+   Responsive
+   ========================================= */
 @media (max-width: 768px) {
-    .form-grid {
-        grid-template-columns: 1fr;
-    }
+    .form-grid { grid-template-columns: 1fr; }
+    .dashboard-container { padding: 20px; margin-top: calc(var(--nav-height) + 20px); }
+    .results-header { flex-direction: column; align-items: flex-start; }
+    .login-container { padding: 28px 24px; }
+    .nav-user { display: none; }
 }
-
 /* =========================================
-   manage_students.php
+   Password Visibility Toggle
    ========================================= */
-.management-layout {
+.password-wrapper {
+    position: relative;
     display: flex;
-    flex-direction: column;
-    gap: 30px; 
+    align-items: center;
 }
 
-/* =========================================
-   view_results.php
-   ========================================= */
-.search-form {
-    display: flex;
-    gap: 10px;
-}
-
-.search-form input[type="text"] {
-    padding: 8px 12px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 14px;
-    min-width: 250px;
-}
-
-.search-form button, 
-.search-form a {
-    padding: 8px 15px;
+.password-toggle {
+    position: absolute;
+    right: 12px;
+    background: transparent;
     border: none;
-    border-radius: 4px;
-    font-weight: bold;
+    color: var(--text-muted);
+    font-size: 1.2em;
     cursor: pointer;
     width: auto;
-}
-
-/* Layout for the title and search bar */
-.results-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.results-header h2 {
+    padding: 0;
     margin: 0;
 }
 
-/* Clear Button specific formatting */
-.search-form .btn-clear {
-    text-decoration: none;
-    display: inline-block;
-    text-align: center;
+/* Hover effects that override the default blue button styling */
+.password-toggle:hover, 
+.login-container button.password-toggle:hover {
+    background: transparent;
+    transform: scale(1.1);
+    color: var(--accent);
 }
 
-/* Table Text Colors & Styles */
-.score-graded {
-    font-weight: bold;
-    color: #2ecc71; /* Green */
+/* =========================================
+   Custom Danger Modal (Replaces Browser Alerts)
+   ========================================= */
+.danger-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6); backdrop-filter: blur(4px);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 10000; opacity: 0; pointer-events: none;
+    transition: opacity 0.3s ease;
 }
+.danger-overlay.active { opacity: 1; pointer-events: all; }
 
-.score-comments {
-    font-size: 0.9em;
-    color: #555; /* Dark Grey */
+.danger-card {
+    background: var(--bg-card); padding: 30px; border-radius: var(--radius-lg);
+    width: 90%; max-width: 400px; text-align: center;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    transform: translateY(20px); transition: transform 0.3s ease;
 }
+.danger-overlay.active .danger-card { transform: translateY(0); }
 
-.score-pending {
-    color: #e67e22; /* Orange */
-    font-style: italic;
+.danger-card h3 { color: var(--text-main); margin-bottom: 10px; font-size: 1.5em; }
+.danger-card p { color: var(--text-muted); margin-bottom: 25px; line-height: 1.5; }
+.danger-actions { display: flex; gap: 15px; }
+.danger-actions button { flex: 1; }
+
+.btn-cancel { background: #e2e8f0; color: #475569; }
+.btn-cancel:hover { background: #cbd5e1; }
+[data-theme="dark"] .btn-cancel { background: #334155; color: #cbd5e1; }
+[data-theme="dark"] .btn-cancel:hover { background: #475569; }
+
+/* =========================================
+   Custom File Upload Styling
+   ========================================= */
+.file-upload-wrapper { position: relative; margin-bottom: 15px; }
+.file-upload-input { 
+    position: absolute; left: 0; top: 0; opacity: 0; 
+    width: 100%; height: 100%; cursor: pointer; z-index: 10;
+}
+.file-upload-btn {
+    display: flex; align-items: center; justify-content: center;
+    padding: 15px; border: 2px dashed var(--border); border-radius: 5px;
+    background: var(--bg-page); color: var(--text-muted); font-weight: 600;
+    transition: var(--transition);
+}
+.file-upload-wrapper:hover .file-upload-btn { 
+    border-color: var(--accent); color: var(--accent); background: var(--accent-light);
 }

@@ -1,5 +1,10 @@
-</div> <footer style="text-align: center; padding: 20px; background-color: #e0e6ed; color: #7f8c8d; font-size: 0.9em; margin-top: auto;">
+</div> <footer class="site-footer">
         &copy; <?php echo date("Y"); ?> Internship Result Management System. All rights reserved.
     </footer>
+
+    <?php 
+    $js_path = (strpos($_SERVER['PHP_SELF'], '/admin/') !== false || strpos($_SERVER['PHP_SELF'], '/assessor/') !== false) ? '../assets/script.js?v=' . time() : 'assets/script.js?v=' . time(); 
+    ?>
+    <script src="<?php echo $js_path; ?>"></script>
 </body>
 </html>
