@@ -12,7 +12,7 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
 }
 ?>
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,24 +20,14 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="assets/style.css?v=<?php echo time(); ?>">
-    <script>
-        var savedTheme = localStorage.getItem('theme') || 'light';
-        document.documentElement.setAttribute('data-theme', savedTheme);
-    </script>
 </head>
 <body class="login-page-body">
 
-    <button class="login-theme-toggle" id="themeToggle" title="Toggle dark mode"></button>
-    
     <?php if (isset($_SESSION['message'])): ?>
         <div class="toast-notification alert-<?php echo ($_SESSION['message_type'] ?? '') === 'error' ? 'danger' : 'success'; ?>">
             <?php echo htmlspecialchars($_SESSION['message']); unset($_SESSION['message']); unset($_SESSION['message_type']); ?>
         </div>
     <?php endif; ?>
-
-    <button class="login-theme-toggle" id="themeToggle" title="Toggle dark mode"></button>
-
-    <div class="login-wrapper">
 
     <div class="login-wrapper">
         <p class="login-logo">Internship System</p>
