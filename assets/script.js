@@ -78,9 +78,9 @@ document.addEventListener('DOMContentLoaded', function() {
             const table = this.closest('.management-layout').querySelector('.dashboard-table');
             
             if (table) {
-                // Grab all standard rows (ignoring empty messages and dropdown detail rows)
-                const rows = table.querySelectorAll('tbody tr:not([id^="detail-"]):not(:has(.empty-message))');
-                
+                // Grab ONLY the direct rows of the main table body (ignoring nested detail tables)
+                    const mainTbody = table.querySelector('tbody');
+                    const rows = mainTbody.querySelectorAll(':scope > tr:not([id^="detail-"]):not(:has(.empty-message))');
                 rows.forEach(row => {
                     const text = row.textContent.toLowerCase();
                     if (text.includes(filter)) {

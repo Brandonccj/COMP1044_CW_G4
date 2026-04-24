@@ -12,6 +12,7 @@ include '../includes/header.php';
 
 $search_query = "";
 $search_param = "%";
+$filter_status = isset($_GET['filter_status']) ? $_GET['filter_status'] : "";
 
 if (isset($_GET['search']) && !empty(trim($_GET['search']))) {
     $search_query = trim($_GET['search']);
@@ -32,11 +33,12 @@ if (isset($_GET['search']) && !empty(trim($_GET['search']))) {
             <div class="results-header">
                 <h2>All Internship Results</h2>
                 <form action="view_results.php" method="GET" class="search-form">
+                    <select name="filter_status" class="filter-select" onchange="this.form.submit()">
+                        <option value="">All Status</option>
+                        <option value="graded" <?php echo $filter_status === 'graded' ? 'selected' : ''; ?>>Graded</option>
+                        <option value="pending" <?php echo $filter_status === 'pending' ? 'selected' : ''; ?>>Evaluation Pending</option>
+                    </select>
                     <input type="text" name="search" placeholder="Search by ID or Name..." value="<?php echo htmlspecialchars($search_query); ?>">
-                    <button type="submit" class="btn-success">Search</button>
-                    <?php if (!empty($search_query)): ?>
-                        <a href="view_results.php" class="btn-danger btn-clear">Clear</a>
-                    <?php endif; ?>
                 </form>
             </div>
 
@@ -53,19 +55,26 @@ if (isset($_GET['search']) && !empty(trim($_GET['search']))) {
                     </thead>
                     <tbody>
                         <?php
-                        $query = "SELECT s.student_id, s.student_name, i.company_name, a.full_name AS assessor_name,
-                                         asm.final_score, asm.qualitative_comments,
-                                         asm.tasks_score, asm.health_safety_score, asm.theory_score,
-                                         asm.presentation_score, asm.clarity_score, asm.lifelong_learning_score,
-                                         asm.project_management_score, asm.time_management_score
-                                  FROM internships i
-                                  JOIN students s ON i.student_id = s.student_id
-                                  JOIN assessors a ON i.assessor_id = a.assessor_id
-                                  LEFT JOIN assessments asm ON i.internship_id = asm.internship_id
-                                  WHERE s.student_id LIKE ? OR s.student_name LIKE ?
-                                  ORDER BY s.student_id ASC";
+                        $base_query = "SELECT s.student_id, s.student_name, i.company_name, a.full_name AS assessor_name,
+                                              asm.final_score, asm.qualitative_comments,
+                                              asm.tasks_score, asm.health_safety_score, asm.theory_score,
+                                              asm.presentation_score, asm.clarity_score, asm.lifelong_learning_score,
+                                              asm.project_management_score, asm.time_management_score
+                                       FROM internships i
+                                       JOIN students s ON i.student_id = s.student_id
+                                       JOIN assessors a ON i.assessor_id = a.assessor_id
+                                       LEFT JOIN assessments asm ON i.internship_id = asm.internship_id
+                                       WHERE (s.student_id LIKE ? OR s.student_name LIKE ?)";
 
-                        $stmt = $conn->prepare($query);
+                        if ($filter_status === 'graded') {
+                            $base_query .= " AND asm.final_score IS NOT NULL";
+                        } elseif ($filter_status === 'pending') {
+                            $base_query .= " AND asm.final_score IS NULL";
+                        }
+
+                        $base_query .= " ORDER BY s.student_id ASC";
+
+                        $stmt = $conn->prepare($base_query);
                         $stmt->bind_param("ss", $search_param, $search_param);
                         $stmt->execute();
                         $result = $stmt->get_result();
@@ -80,12 +89,10 @@ if (isset($_GET['search']) && !empty(trim($_GET['search']))) {
 
                                 if ($row['final_score'] !== null) {
                                     echo "<td class='score-graded'>" . htmlspecialchars($row['final_score']) . "%</td>";
-                                    // Expandable detail button
                                     echo "<td>
                                             <button class='btn-edit' onclick=\"toggleDetail('detail-{$sid}')\">View Breakdown</button>
                                           </td>";
                                     echo "</tr>";
-                                    // Hidden breakdown row
                                     echo "<tr id='detail-{$sid}' style='display:none; background:#f8f9fa;'>
                                             <td colspan='5'>
                                                 <div style='padding:12px;'>

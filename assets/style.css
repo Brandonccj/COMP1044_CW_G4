@@ -602,6 +602,25 @@ textarea#qualitative_comments:focus {
     box-shadow: 0 0 0 3px rgba(79,70,229,0.12);
 }
 
+.filter-select {
+    padding: 8px 14px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-size: 0.875em;
+    font-family: 'Inter', sans-serif;
+    background: var(--bg-input);
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: var(--transition);
+    height: auto;
+}
+
+.filter-select:focus {
+    outline: none;
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 3px rgba(79,70,229,0.12);
+}
+
 .search-form button,
 .search-form a {
     padding: 8px 16px;
