@@ -10,7 +10,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'Assessor') {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
-    // 1. Capture Data
+    // Capture Data
     $internship_id = intval($_POST['internship_id']);
     
     // Catch the student name passed from the hidden input field
@@ -29,7 +29,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Sanitize text input
     $comments = trim($_POST['qualitative_comments']);
 
-    // 2. Execute Math (Since inputs are already strictly bounded out of 10 or 15, we just add them up)
+    // Define max possible scores based on assignment criteria
+    $max_scores = [
+        'tasks' => 10, 'health' => 10, 'theory' => 10, 
+        'presentation' => 15, 'clarity' => 10, 
+        'lifelong' => 15, 'project' => 15, 'time' => 15
+    ];
+
+    // Server-side validation check
+    if ($tasks > $max_scores['tasks'] || $health > $max_scores['health'] || 
+        $presentation > $max_scores['presentation'] /* ... check all ... */ ) {
+        
+        $_SESSION['message'] = "Validation Error: One or more scores exceeded the maximum allowed weightage.";
+        $_SESSION['message_type'] = "error";
+        header("Location: ../assessor_dashboard.php");
+        exit();
+    }
+
+    // Execute Math (Since inputs are already strictly bounded out of 10 or 15, we just add them up)
     $final_score = $tasks + $health + $theory + $presentation + $clarity + $lifelong + $project + $time;
 
     // Round to 2 decimal places for clean storage
