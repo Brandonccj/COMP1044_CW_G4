@@ -66,14 +66,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                 $stmt = $conn->prepare("INSERT INTO students (student_id, student_name, programme) VALUES (?, ?, ?)");
 
                 while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
-                    if (count($data) >= 3) {
+                    // Ensure the row isn't blank and has exactly 3 columns
+                    if (array_filter($data) && count($data) >= 3) {
                         $sid  = trim($data[0]);
                         $name = trim($data[1]);
                         $prog = trim($data[2]);
-                        if (strtolower($sid) === 'student id' || strtolower($sid) === 'id') continue;
-                        if (!empty($sid) && !empty($name) && !empty($prog)) {
+                        
+                        // Skip header rows or empty IDs
+                        if (strtolower($sid) === 'student id' || strtolower($sid) === 'id' || empty($sid)) continue;
+                        
+                        // Ensure name and programme aren't empty before executing
+                        if (!empty($name) && !empty($prog)) {
                             $stmt->bind_param("sss", $sid, $name, $prog);
-                            if ($stmt->execute()) { $successCount++; } else { $errorCount++; }
+                            // Execute logic: count successes and errors
+                            if ($stmt->execute()) { 
+                                $successCount++; 
+                            } else { 
+                                $errorCount++; 
+                            }
                         }
                     }
                 }
