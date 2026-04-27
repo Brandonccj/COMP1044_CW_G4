@@ -23,6 +23,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
             exit();
         }
 
+        // Validate password length BEFORE touching the database
+        if (strlen($password) < 6) {
+            $_SESSION['message'] = "Security Error: Password must be at least 6 characters long.";
+            $_SESSION['message_type'] = "error";
+            header("Location: ../admin/manage_assessors.php");
+            exit();
+        }
+
         // Check for duplicate username BEFORE attempting insert
         $check = $conn->prepare("SELECT assessor_id FROM assessors WHERE username = ?");
         $check->bind_param("s", $username);
@@ -50,14 +58,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
             $_SESSION['message'] = "Database Error: " . $conn->error;
             $_SESSION['message_type'] = "error";
         }
-
-        // Check if password is atleast 6 characters
-        if (strlen($password) < 6 && !empty($password)) {
-            $_SESSION['message'] = "Security Error: Password must be at least 6 characters long.";
-            $_SESSION['message_type'] = "error";
-            header("Location: ../admin/manage_assessors.php");
-            exit();
-        }
         $stmt->close();
     }
 
@@ -69,6 +69,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
 
         if (empty($full_name)) {
             $_SESSION['message'] = "Error: Full name cannot be empty.";
+            $_SESSION['message_type'] = "error";
+            header("Location: ../admin/manage_assessors.php");
+            exit();
+        }
+
+        // Validate password length BEFORE touching the database
+        if (!empty($password) && strlen($password) < 6) {
+            $_SESSION['message'] = "Security Error: Password must be at least 6 characters long.";
             $_SESSION['message_type'] = "error";
             header("Location: ../admin/manage_assessors.php");
             exit();
@@ -89,14 +97,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
         } else {
             $_SESSION['message'] = "Database Error: " . $conn->error;
             $_SESSION['message_type'] = "error";
-        }
-
-        // Check if password is atleast 6 characters
-        if (strlen($password) < 6 && !empty($password)) {
-            $_SESSION['message'] = "Security Error: Password must be at least 6 characters long.";
-            $_SESSION['message_type'] = "error";
-            header("Location: ../admin/manage_assessors.php");
-            exit();
         }
         $stmt->close();
     }
