@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             scoreInputs.forEach(function(input) {
                 const value = parseFloat(input.value);
-                if (value < 0 || value > 100 || isNaN(value)) {
+                if (value < 0 || value > parseFloat(input.getAttribute('max')) || isNaN(value)) {
                     isValid = false;
                     input.style.borderColor = 'red'; 
                 } else {

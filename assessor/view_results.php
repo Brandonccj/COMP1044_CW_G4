@@ -22,7 +22,7 @@ if (isset($_GET['search']) && !empty(trim($_GET['search']))) {
 
 <main class="dashboard-container">
 
-    <a href="../admin_dashboard.php" class="back-link">← Back to Dashboard</a>
+    <a href="../assessor_dashboard.php" class="back-link">← Back to Dashboard</a>
 
     <header class="dashboard-header">
         <h1>System Results Overview</h1>

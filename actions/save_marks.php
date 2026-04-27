@@ -37,9 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     ];
 
     // Server-side validation check
-    if ($tasks > $max_scores['tasks'] || $health > $max_scores['health'] || 
-        $presentation > $max_scores['presentation'] /* ... check all ... */ ) {
-        
+    if ($tasks > 10 || $health > 10 || $theory > 10 || $presentation > 15 || $clarity > 10 || $lifelong > 15 || $project > 15 || $time > 15 || $tasks < 0 || $health < 0 || $theory < 0) {
         $_SESSION['message'] = "Validation Error: One or more scores exceeded the maximum allowed weightage.";
         $_SESSION['message_type'] = "error";
         header("Location: ../assessor_dashboard.php");
